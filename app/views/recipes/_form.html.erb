@@ -1,0 +1,57 @@
+<%= form_for @recipe do |f| %>
+
+
+<div class="form-group">
+<%= f.label :Title %>
+<%= f.text_field :title,:class => "form-control" %>
+</div>
+
+
+<div class="form-group">
+<%= f.label :DificultyLevel %>
+<%= f.select :dificulty_level, Recipe::DIFFICULTY,{},:class => "form-control" %>
+
+
+
+</div>
+
+<div class="form-group">
+<%= f.label :ingrediants %>
+<%= f.text_area :ingrediants,:class => "form-control" %>
+</div>
+
+<div class="form-group">
+<%= f.label :procedure %>
+<%= f.text_area :procedure,:class => "form-control" %>
+</div>
+
+<div class="form-group">
+<%= f.label :cookingtime %>
+<%= f.text_field :cookingtime,:class=>"form-control" %>
+</div>
+
+<div class="form-group">
+<%= f.label :cuisine_id %>
+<%= f.select(:cuisine_id,
+options_from_collection_for_select(Cuisine.all,
+:id, :name), {:prompt => 'Please Choose'}, :class =>
+"form-control") %>
+</div>
+
+
+<div class="form-group">
+<%= f.label :food_type_id %>
+<%#= f.select :food_type_id, options_for_select([["select",""]] + FoodType.all.map{|e| [e.name,e.id]} ) %>
+<%= f.select(:food_type_id,options_from_collection_for_select(FoodType.all,:id,:name),{:prompt => 'Please select FoodType'},:class => "form-control")%>
+</div>
+
+
+<div class="form-group">
+<%= f.label :food_preference_id %>
+<%= f.select(:food_preference_id, options_from_collection_for_select(FoodPreference.all,:id,:name),{:prompt => 'Please Select FoodPreference'},:class => "form-control") %>
+</div>
+
+<div class="form-action">
+<%= f.submit %>
+</div>
+<% end %>

@@ -1,0 +1,42 @@
+<table class="table table-striped" style="background:white;">
+  <tr>
+    <th>Title</th>
+    <th>DificultyLevel</th>
+    <th>Ingredients</th>
+    <th>Procedure</th>
+    <th>cookingtime</th>
+    <th>Cuisine Name</th>
+    <th>FoodType</th>
+    <th>FoodPreference</th>
+    <th>Actions</th>
+  </tr>
+  <% @recipes.each do |recipe| %>
+  <tr>
+
+    <td><%= recipe.title %></td>
+    <td><%= recipe.dificulty_level %></td>
+    <td><%= recipe.ingrediants %></td>
+    <td><%= recipe.procedure %></td>
+    <td><%= recipe.cookingtime %></td>
+    <td><%= recipe.cuisine.name%></td>
+    <td><%= recipe.food_type.name%></td>
+    <td><%= recipe.food_preference.name%></td>
+
+    <td>
+        <%= link_to "Show", recipe_path(recipe), :class => "btn btn-success" %>
+        <% if user_signed_in? %>    <%= link_to "Edit", edit_recipe_path(recipe), :class => "btn btn-warning" %>|
+<%= link_to "Delete",recipe_path(recipe),:method => :delete, :data => {:confirm => "are you sure?"}, :class => "btn btn-danger" %>
+<%end%>  </td>
+    </tr>
+  <% end %>
+  </table>
+
+
+
+
+
+
+
+
+
+  <%= link_to "New", new_recipe_path, :class => "btn btn-default" %>
